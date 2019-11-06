@@ -1,21 +1,21 @@
 run:
-	qemu-system-x86_64 \
-		-accel hvf \
+	qemu-system-i386 \
+		-accel hax \
 		-m 1024 \
-		-hda ./hda.img
+		-hda ./hda.qcow2
 
 bootstrap:
-	qemu-system-x86_64 \
-		-cdrom debian-10.1.0-amd64-xfce-CD-1.iso \
+	qemu-system-i386 \
+		-cdrom debian-10.1.0-i386-xfce-CD-1.iso \
 		-boot d \
-		-accel hvf \
 		-m 1024 \
-		-hda ./hda.img
+		-accel hax \
+		-hda ./hda.qcow2
 
-img:
-	qemu-img create hda.img 4G
+hda:
+	qemu-img create -f qcow2 hda.qcow2 16G
 
 download:
-	wget https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.1.0-amd64-xfce-CD-1.iso
+	wget https://cdimage.debian.org/debian-cd/current/i386/iso-cd/debian-10.1.0-i386-xfce-CD-1.iso
 
-.PHONY: run img download bootstrap
+.PHONY: run hda download bootstrap
