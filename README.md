@@ -25,7 +25,7 @@ ssh is available on port 2222:
 
 ```
 ssh -p2222 idm@127.0.0.1
-scp -p2222 -r Lens-dist/ idm@127.0.0.1:/App
+scp -p2222 -r Lens-dist/ idm@127.0.0.1:/app
 ```
 
 ### Inside Guest
@@ -33,7 +33,7 @@ scp -p2222 -r Lens-dist/ idm@127.0.0.1:/App
 Launch a terminal from the dock.
 
 ```
-cd /App/Lens-dist
+cd /app/Lens-linux
 ./Bin/lens.sh
 ```
 
