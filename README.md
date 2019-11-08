@@ -25,7 +25,7 @@ ssh is available on port 2222:
 
 ```
 ssh -p2222 idm@127.0.0.1
-scp -p2222 -r Lens-dist/ idm@127.0.0.1:/app
+scp -p2222 -r Lens-dist/ idm@127.0.0.1:/app/Lens-linux
 ```
 
 ### Inside Guest
@@ -73,6 +73,7 @@ apt install build-essential \
 
 ```
 make download
+make hda
 make bootstrap
 make run
 ```
