@@ -38,7 +38,7 @@ ssh -p2222 idm@127.0.0.1
 Use `scp` to move files to/from the image.
 
 ```
-scp -p2222 -r Lens-dist/ idm@127.0.0.1:/app/Lens-linux
+scp -P2222 -r Lens-dist/ idm@127.0.0.1:/app/Lens-linux
 ```
 
 ### Inside Guest
