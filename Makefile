@@ -1,6 +1,12 @@
+# Makefile for lens-qemu
+# 2019 Ian Dennis Miller
+
+HYPERVISOR=hvf
+# HYPERVISOR=hax # for Windows; requires Intel HAXM (see Readme)
+
 run:
 	qemu-system-x86_64 \
-		-accel hvf \
+		-accel $(HYPERVISOR) \
 		-m 2048 \
 		-net user,hostfwd=tcp::2222-:22 \
 		-net nic \
@@ -13,7 +19,7 @@ bootstrap:
 		-cdrom debian-10.1.0-amd64-xfce-CD-1.iso \
 		-boot d \
 		-m 2048 \
-		-accel hvf \
+		-accel $(HYPERVISOR) \
 		-hda ./hda-amd64.qcow2
 
 hda:
