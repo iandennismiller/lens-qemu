@@ -25,7 +25,8 @@ rm lens alens
 ln -s lens-2.63 lens
 ln -s alens-2.63 alens
 
-rm ~debian/stage1.sh ~debian/stage2.sh
-
 # Trim filesystem
 fstrim -av
+
+# Clean up
+rm ~debian/stage1.sh ~debian/stage2.sh

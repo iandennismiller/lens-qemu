@@ -15,8 +15,10 @@ IMAGE_SIZE=256
 # Which port should SSH be available on?
 SSH_PORT=2222
 
-# DEBIAN_ARCH and QEMU_ARCH also support "i386"
+# DEBIAN_ARCH: Choices are i386 and amd64
 DEBIAN_ARCH=amd64
+
+# QEMU_ARCH: Choices are i386 and x86_64
 QEMU_ARCH=x86_64
 
 run:
