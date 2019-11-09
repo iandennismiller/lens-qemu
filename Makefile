@@ -37,7 +37,7 @@ requirements-macos:
 	brew install qemu wget
 
 hda:
-	qemu-img create -f qcow2 hda-$(DEBIAN_ARCH).qcow2 $(IMAGE_SIZE)GB
+	qemu-img create -f qcow2 hda-$(DEBIAN_ARCH).qcow2 $(IMAGE_SIZE)G
 
 download-image:
 	wget http://imiller.utsc.utoronto.ca/media/lens/hda-amd64.qcow2
