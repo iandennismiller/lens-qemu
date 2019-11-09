@@ -39,5 +39,5 @@ ssh -i ssh/debian -p${SSH_PORT} -t debian@127.0.0.1 "sudo ~debian/stage2.sh"
 echo
 echo "Repack qcow2 image"
 echo "-------"
-convert -O qcow2 -c hda-amd64.qcow2 hda-amd64-compressed.qcow2
+qemu-img convert -O qcow2 -c hda-amd64.qcow2 hda-amd64-compressed.qcow2
 mv hda-amd64-compressed.qcow2 hda-amd64.qcow2
