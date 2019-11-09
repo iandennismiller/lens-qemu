@@ -15,6 +15,7 @@ run:
 		-hda ./hda-$(DEBIAN_ARCH).qcow2 \
 		-accel $(HYPERVISOR) \
 		-m 2048 \
+		-device usb-tablet \
 		-net user,hostfwd=tcp::2222-:22 \
 		-net nic \
 		-vnc :0 \
