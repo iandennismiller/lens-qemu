@@ -24,6 +24,7 @@ run:
 		-hda ./hda-$(DEBIAN_ARCH).qcow2 \
 		-accel $(HYPERVISOR) \
 		-m $(RAM) \
+		-usb \
 		-device usb-tablet \
 		-net user,hostfwd=tcp::$(SSH_PORT)-:22 \
 		-net nic \

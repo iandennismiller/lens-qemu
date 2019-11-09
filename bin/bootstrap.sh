@@ -9,7 +9,7 @@ echo
 echo "Wait for VM to boot"
 echo "-------"
 echo "Please enter debian user password when prompted."
-until ssh -o ConnectTimeout=2 -p ${SSH_PORT} debian@127.0.0.1 "exit" 2>/dev/null; do echo "." && sleep 1; done
+until ssh -o ConnectTimeout=2 -p ${SSH_PORT} debian@127.0.0.1 "exit" 2>/dev/null; do echo -n "." && sleep 1; done
 echo "Okay.  The VM has booted."
 
 echo
