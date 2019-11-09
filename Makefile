@@ -20,8 +20,20 @@ run:
 		-vnc :0 \
 		-daemonize
 
+ssh:
+	ssh -t -p 2222 -i ssh/debian debian@127.0.0.1
+
 requirements-macos:
 	brew install qemu wget
+
+hda:
+	qemu-img create -f qcow2 hda-$(DEBIAN_ARCH).qcow2 16G
+
+download-image:
+	wget http://imiller.utsc.utoronto.ca/media/lens/hda-amd64.qcow2
+
+download-iso:
+	wget "https://cdimage.debian.org/debian-cd/current/$(DEBIAN_ARCH)/iso-cd/debian-10.1.0-$(DEBIAN_ARCH)-netinst.iso"
 
 debian:
 	qemu-system-$(QEMU_ARCH) \
@@ -34,11 +46,12 @@ debian:
 key:
 	ssh-keygen -f ssh/debian -t rsa -b 4096 -C "Debian Lens User"
 
-bootstrap-stage1:
+bootstrap-stage1: run
+	-ssh-keygen -R [127.0.0.1]:2222
 	@echo
 	@echo "# Wait for VM to boot"
 	@echo "Please enter debian user password when prompted."
-	@until ssh -o ConnectTimeout=2 -p 2222 debian@127.0.0.1 "exit" 2>/dev/null; do sleep 1; done
+	@until ssh -o ConnectTimeout=2 -p 2222 debian@127.0.0.1 "exit" 2>/dev/null; do echo "." && sleep 1; done
 	@echo "Okay.  The VM has booted."
 
 	@echo
@@ -62,19 +75,9 @@ bootstrap-stage2:
 	@echo "Provide the debian user password to execute the bootstrap script."
 	@ssh -i ssh/debian -p2222 -t debian@127.0.0.1 "sudo ~debian/bootstrap-stage2.sh"
 
-bootstrap: run bootstrap-stage1 bootstrap-stage2
+bootstrap: bootstrap-stage1 bootstrap-stage2
+	convert -O qcow2 -c hda-amd64.qcow2 hda-amd64-compressed.qcow2
+	mv hda-amd64-compressed.qcow2 hda-amd64.qcow2
 	@echo "Done bootstrapping."
-
-hda:
-	qemu-img create -f qcow2 hda-$(DEBIAN_ARCH).qcow2 16G
-
-download-image:
-	wget http://imiller.utsc.utoronto.ca/media/lens/hda-amd64.qcow2
-
-download-iso:
-	wget "https://cdimage.debian.org/debian-cd/current/$(DEBIAN_ARCH)/iso-cd/debian-10.1.0-$(DEBIAN_ARCH)-netinst.iso"
-
-ssh:
-	ssh -t -p 2222 -i ssh/debian debian@127.0.0.1
 
 .PHONY: run hda bootstrap download-iso download-image requirements-macos ssh

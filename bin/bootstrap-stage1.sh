@@ -8,7 +8,7 @@
 
 # Install public key
 if [ ! -d ~debian/.ssh ]; then
-    mkdir -f ~debian/.ssh
+    mkdir ~debian/.ssh
     chown debian:debian ~debian/.ssh
 fi
 
