@@ -13,6 +13,9 @@ run:
 		-vnc :0 \
 		-hda ./hda-amd64.qcow2
 
+requirements-mac:
+	brew install qemu wget
+
 download-image:
 	wget http://imiller.utsc.utoronto.ca/media/lens/hda-amd64.qcow2
 

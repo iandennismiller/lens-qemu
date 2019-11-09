@@ -3,36 +3,57 @@
 This project provides a Debian Linux Virtual Machine disk image that has Lens pre-installed in `/app/Lens-linux`.
 This image can be virtualized with QEMU.
 
-See [Windows](docs/Windows.md) for compatiblity with Win10.
+## Quick Start
 
-## Quick Start on MacOS
+1. Clone this project
+2. Install requirements
+3. Download and run the Virtual Machine
+4. Connect to the Virtual Machine using VNC
+5. Login to the Virtual Machine
+6. Launch Lens
 
-1. Download and run the Virtual Machine
-2. Connect to the Virtual Machine using VNC
-3. Login to the Virtual Machine
-4. Launch Lens
+### 1. Clone this project
 
-### 1. Download and run the Virtual Machine
+First, clone this repository.
 
 ```
-brew install qemu wget
 git clone https://projects.sisrlab.com/cap-lab/lens-qemu.git
 cd lens-qemu
-make download-image run
 ```
 
-### 2. Connect to the Virtual Machine using VNC
+### 2. Install requirements
+
+`lens-qemu` requires QEMU and `wget` to work.
+You can install these on MacOS with homebrew using `make requirements-mac`.
+
+```
+make requirements-mac
+```
+
+See [Windows Requirements](docs/Windows.md) for compatiblity with Win10.
+
+### 3. Download and run the Virtual Machine
+
+1. Download the VM disk image with `make download-image`.
+2. Run the VM with `make run`.
+
+```
+make download-image
+make run
+```
+
+### 4. Connect to the Virtual Machine using VNC
 
 Use your favorite VNC client to connect to `127.0.0.1:5900`.
 
 If you do not have any VNC client yet, [install Tiger VNC](docs/VNC.md).
 
-### 3. Login to the Virtual Machine
+### 5. Login to the Virtual Machine
 
 - username is `idm` and password is `debian`
 - root password is also `debian`
 
-### 4. Launch Lens
+### 6. Launch Lens
 
 Launch a terminal from the dock.
 Then, launch Lens.
