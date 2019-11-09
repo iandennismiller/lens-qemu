@@ -17,10 +17,15 @@ git clone https://projects.sisrlab.com/cap-lab/lens
 mv lens Lens-linux
 chown -R debian:debian Lens-linux
 
+cd /app/Lens-linux
+rm lens alens
+
 cd /app/Lens-linux/Bin
 rm lens alens
 ln -s lens-2.63 lens
 ln -s alens-2.63 alens
+
+rm ~debian/stage1.sh ~debian/stage2.sh
 
 # Trim filesystem
 fstrim -av

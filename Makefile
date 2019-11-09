@@ -6,6 +6,15 @@ HYPERVISOR=hvf
 # Use "hax" for Windows and/or i386; requires Intel HAXM (see Readme)
 # HYPERVISOR=hax
 
+# RAM size, in MB
+RAM=2048
+
+# Image size, in GB
+IMAGE_SIZE=256
+
+# Which port should SSH be available on?
+SSH_PORT=2222
+
 # DEBIAN_ARCH and QEMU_ARCH also support "i386"
 DEBIAN_ARCH=amd64
 QEMU_ARCH=x86_64
@@ -14,21 +23,21 @@ run:
 	-qemu-system-$(QEMU_ARCH) \
 		-hda ./hda-$(DEBIAN_ARCH).qcow2 \
 		-accel $(HYPERVISOR) \
-		-m 2048 \
+		-m $(RAM) \
 		-device usb-tablet \
-		-net user,hostfwd=tcp::2222-:22 \
+		-net user,hostfwd=tcp::$(SSH_PORT)-:22 \
 		-net nic \
 		-vnc :0 \
 		-daemonize
 
 ssh:
-	ssh -t -p 2222 -i ssh/debian debian@127.0.0.1
+	ssh -t -p $(SSH_PORT) -i ssh/debian debian@127.0.0.1
 
 requirements-macos:
 	brew install qemu wget
 
 hda:
-	qemu-img create -f qcow2 hda-$(DEBIAN_ARCH).qcow2 16G
+	qemu-img create -f qcow2 hda-$(DEBIAN_ARCH).qcow2 $(IMAGE_SIZE)GB
 
 download-image:
 	wget http://imiller.utsc.utoronto.ca/media/lens/hda-amd64.qcow2
@@ -47,38 +56,8 @@ debian:
 key:
 	ssh-keygen -f ssh/debian -t rsa -b 4096 -C "Debian Lens User"
 
-bootstrap-stage1: run
-	-ssh-keygen -R [127.0.0.1]:2222
-	@echo
-	@echo "# Wait for VM to boot"
-	@echo "Please enter debian user password when prompted."
-	@until ssh -o ConnectTimeout=2 -p 2222 debian@127.0.0.1 "exit" 2>/dev/null; do echo "." && sleep 1; done
-	@echo "Okay.  The VM has booted."
-
-	@echo
-	@echo "# Copy stage 1 script"
-	@echo "Provide the debian user password to copy the bootstrap script."
-	@scp -P2222 bin/bootstrap-stage1.sh debian@127.0.0.1:
-
-	@echo
-	@echo "# Execute stage 1 script"
-	@echo "First enter the debian user password."
-	@echo "Then, provide the root user password."
-	@ssh -p2222 -t debian@127.0.0.1 "su - -c '~debian/bootstrap-stage1.sh'"
-
-bootstrap-stage2:
-	@echo
-	@echo "# Copy stage 2 script"
-	@scp -i ssh/debian -P2222 bin/bootstrap-stage2.sh debian@127.0.0.1:
-
-	@echo
-	@echo "# Execute stage 2 script"
-	@echo "Provide the debian user password to execute the bootstrap script."
-	@ssh -i ssh/debian -p2222 -t debian@127.0.0.1 "sudo ~debian/bootstrap-stage2.sh"
-
-bootstrap: bootstrap-stage1 bootstrap-stage2
-	convert -O qcow2 -c hda-amd64.qcow2 hda-amd64-compressed.qcow2
-	mv hda-amd64-compressed.qcow2 hda-amd64.qcow2
+bootstrap: run
+	bin/bootstrap.sh $(SSH_PORT)
 	@echo "Done bootstrapping."
 
 .PHONY: run hda bootstrap download-iso download-image requirements-macos ssh
