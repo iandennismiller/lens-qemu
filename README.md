@@ -18,18 +18,9 @@ make download-image run
 
 ### Connect to the virtual machine using VNC
 
-```
-brew cask install tigervnc-viewer
-```
+Use your favorite VNC client to connect to `127.0.0.1:5900`.
 
-Tiger VNC is now available in `/Applications`.
-Launch Tiger VNC with Spotlight.
-
-![Launch Tiger VNC](docs/spotlight-launch-tigervnc.png)
-
-Using Tiger VNC, connect to `127.0.0.1:5900`.
-
-![Tiger VNC Connect Screen](docs/tigervnc-connect-screen.png)
+If you do not have any VNC client yet, [install Tiger VNC](docs/VNC.md).
 
 ### Login
 
