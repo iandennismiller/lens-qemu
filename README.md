@@ -1,47 +1,42 @@
 # lens-qemu
 
-Run Lens inside an x86_64 Debian Buster guest that is hosted by QEMU on MacOS.
+This project provides a Debian Linux Virtual Machine disk image that has Lens pre-installed in `/app/Lens-linux`.
+This image can be virtualized with QEMU.
 
-To launch on Windows, edit `Makefile` to uncomment `HYPERVISOR=hax`.
+See [Windows](Windows.md) for compatiblity with Win10.
 
-## Launching Lens
+## Quick Start on MacOS
 
-### Host
+### Download and run the virtual machine
 
 ```
-make run
+brew install qemu wget
+git clone https://projects.sisrlab.com/cap-lab/lens-qemu.git
+cd lens-qemu
+make download-image run
 ```
 
-### Connecting to Guest
+### Connect to the virtual machine using VNC
+
+```
+brew cask install tigervnc-viewer
+```
+
+Tiger VNC is now available in `/Applications`.
+Launch Tiger VNC with Spotlight.
+
+![Launch Tiger VNC](spotlight-launch-tigervnc.png)
+
+Using Tiger VNC, connect to `127.0.0.1:5900`.
+
+![Tiger VNC Connect Screen](tigervnc-connect-screen.png)
+
+### Login
 
 - username is `idm` and password is `debian`
 - root password is also `debian`
 
-#### VNC
-
-Use VNC to connect to the guest display.
-
-```
-vncviewer 127.0.0.1:5900
-```
-
-#### ssh
-
-`ssh` is available on port 2222:
-
-```
-ssh -p2222 idm@127.0.0.1
-```
-
-#### scp
-
-Use `scp` to move files to/from the image.
-
-```
-scp -P2222 -r Lens-dist/ idm@127.0.0.1:/app/Lens-linux
-```
-
-### Inside Guest
+### Launch Lens
 
 Launch a terminal from the dock.
 Then, launch Lens.
@@ -51,67 +46,25 @@ cd /app/Lens-linux
 ./Bin/lens.sh
 ```
 
-## Requirements
+## Common tasks
 
-In order to run a QEMU image, there are several requirements.
-The machine you are sitting at is the "host" and the virtual machine is the "guest."
+### ssh
 
-### Host Requirements
-
-Install QEMU and a VNC viewer.
-
-#### MacOS with Homebrew
+`ssh` is available on port 2222:
 
 ```
-brew install qemu
-brew cask install tigervnc-viewer
+ssh -p2222 idm@127.0.0.1
 ```
 
-#### HAXM
+### scp
 
-Intel Hardware Accelerated Extension Manager (HAXM) is required for acceleration on Windows.
-HAXM is also required for i386 virtualization on both MacOS and Windows.
-
-- [Download v7.5.4](https://github.com/intel/haxm/releases/tag/v7.5.4)
-- [All HAXM releases](https://github.com/intel/haxm/tags)
-- [Instructions for MacOS](https://github.com/intel/haxm/wiki/Installation-Instructions-on-macOS)
-
-### Guest Requirements
-
-If you have built your own guest image, the following are useful:
+Use `scp` to move files to/from the image.
 
 ```
-apt install build-essential \
-    tigervnc-standalone-server \
-    net-tools
-```
-
-## Guest disk image
-
-There are two ways to obtain a runnable Debian disk image:
-
-1. download a pre-built snapshot
-2. build your own
-
-### Using the snapshot
-
-A runnable Debian x86_64 image is available.
-
-```
-wget http://imiller.utsc.utoronto.ca/media/lens/hda-amd64.qcow2
-```
-
-### Bootstrapping a Debian Buster image
-
-Create your own disk image and install Debian Buster on it.
-
-```
-make download
-make hda
-make bootstrap
-make run
+scp -P2222 -r Lens-dist/ idm@127.0.0.1:/app/Lens-linux
 ```
 
 ## References
 
+- [Instructions for Bootstrapping a new disk image](Bootstrap.md)
 - http://tedlab.mit.edu/~dr/Lens/installing.html
