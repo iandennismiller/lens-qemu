@@ -50,7 +50,7 @@ If you do not have any VNC client yet, [install Tiger VNC](docs/VNC.md).
 
 ### 5. Login to the Virtual Machine
 
-- username is `idm` and password is `debian`
+- username is `debian` and password is `debian`
 - root password is also `debian`
 
 ### 6. Launch Lens
@@ -70,7 +70,7 @@ cd /app/Lens-linux
 `ssh` is available on port 2222:
 
 ```
-ssh -p2222 idm@127.0.0.1
+ssh -p2222 debian@127.0.0.1
 ```
 
 ### scp
@@ -78,7 +78,7 @@ ssh -p2222 idm@127.0.0.1
 Use `scp` to move files to/from the image.
 
 ```
-scp -P2222 -r Lens-dist/ idm@127.0.0.1:/app/Lens-linux
+scp -P2222 -r Lens-dist/ debian@127.0.0.1:/app/Lens-linux
 ```
 
 ## References
