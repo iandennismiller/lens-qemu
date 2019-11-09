@@ -3,9 +3,9 @@
 Create your own disk image and install Debian Buster on it.
 
 ```
-make download-iso-64
-make hda-64
-make bootstrap-64
+make download-iso
+make hda
+make bootstrap
 ```
 
 ### Guest Requirements

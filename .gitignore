@@ -1,6 +1,2 @@
-/debian-10.1.0-i386-xfce-CD-1.iso
-/debian-10.1.0-amd64-xfce-CD-1.iso
-/hda.img
-/hda.qcow2
-/hda-i386.qcow2
-/hda-amd64.qcow2
+/debian-10.1.0-*.iso
+/hda-*.qcow2
