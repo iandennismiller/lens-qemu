@@ -7,7 +7,12 @@ See [Windows](docs/Windows.md) for compatiblity with Win10.
 
 ## Quick Start on MacOS
 
-### Download and run the virtual machine
+1. Download and run the Virtual Machine
+2. Connect to the Virtual Machine using VNC
+3. Login to the Virtual Machine
+4. Launch Lens
+
+### 1. Download and run the Virtual Machine
 
 ```
 brew install qemu wget
@@ -16,18 +21,18 @@ cd lens-qemu
 make download-image run
 ```
 
-### Connect to the virtual machine using VNC
+### 2. Connect to the Virtual Machine using VNC
 
 Use your favorite VNC client to connect to `127.0.0.1:5900`.
 
 If you do not have any VNC client yet, [install Tiger VNC](docs/VNC.md).
 
-### Login
+### 3. Login to the Virtual Machine
 
 - username is `idm` and password is `debian`
 - root password is also `debian`
 
-### Launch Lens
+### 4. Launch Lens
 
 Launch a terminal from the dock.
 Then, launch Lens.
