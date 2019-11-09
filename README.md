@@ -3,7 +3,7 @@
 This project provides a Debian Linux Virtual Machine disk image that has Lens pre-installed in `/app/Lens-linux`.
 This image can be virtualized with QEMU.
 
-See [Windows](Windows.md) for compatiblity with Win10.
+See [Windows](docs/Windows.md) for compatiblity with Win10.
 
 ## Quick Start on MacOS
 
@@ -25,11 +25,11 @@ brew cask install tigervnc-viewer
 Tiger VNC is now available in `/Applications`.
 Launch Tiger VNC with Spotlight.
 
-![Launch Tiger VNC](spotlight-launch-tigervnc.png)
+![Launch Tiger VNC](docs/spotlight-launch-tigervnc.png)
 
 Using Tiger VNC, connect to `127.0.0.1:5900`.
 
-![Tiger VNC Connect Screen](tigervnc-connect-screen.png)
+![Tiger VNC Connect Screen](docs/tigervnc-connect-screen.png)
 
 ### Login
 
@@ -66,5 +66,5 @@ scp -P2222 -r Lens-dist/ idm@127.0.0.1:/app/Lens-linux
 
 ## References
 
-- [Instructions for Bootstrapping a new disk image](Bootstrap.md)
+- [Instructions for Bootstrapping a new disk image](docs/Bootstrap.md)
 - http://tedlab.mit.edu/~dr/Lens/installing.html
