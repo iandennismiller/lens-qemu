@@ -37,6 +37,13 @@ echo "Provide the debian user password to execute the bootstrap script."
 ssh -i ssh/debian -p${SSH_PORT} -t debian@127.0.0.1 "sudo ~debian/stage2.sh"
 
 echo
+echo "Shutdown"
+echo "-------"
+echo "Provide the debian user password to execute the bootstrap script."
+ssh -i ssh/debian -p${SSH_PORT} -t debian@127.0.0.1 "sudo shutdown now"
+sleep 5
+
+echo
 echo "Repack qcow2 image"
 echo "-------"
 qemu-img convert -O qcow2 -c hda-amd64.qcow2 hda-amd64-compressed.qcow2
