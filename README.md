@@ -75,10 +75,10 @@ cd /app/Lens-linux
 
 ### ssh
 
-`ssh` is available on port 2222:
+`ssh` is available on port 2222, by default:
 
 ```
-ssh -p2222 debian@127.0.0.1
+ssh -i key/debian -p 2222 debian@127.0.0.1
 ```
 
 ### scp
@@ -86,7 +86,7 @@ ssh -p2222 debian@127.0.0.1
 Use `scp` to move files to/from the image.
 
 ```
-scp -P2222 -r Lens-dist/ debian@127.0.0.1:/app/Lens-linux
+scp -i key/debian -P 2222 -r Lens-dist/ debian@127.0.0.1:/app/Lens-linux
 ```
 
 ## References
