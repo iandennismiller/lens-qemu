@@ -34,7 +34,7 @@ run:
 		-daemonize
 
 ssh:
-	ssh -t -p $(SSH_PORT) -i ssh/debian debian@127.0.0.1
+	ssh -t -p $(SSH_PORT) -i key/debian debian@127.0.0.1
 
 requirements-macos:
 	brew install qemu wget
@@ -44,6 +44,8 @@ hda:
 
 download-image:
 	wget http://imiller.utsc.utoronto.ca/media/lens/hda-amd64.qcow2
+	wget -O key/debian http://imiller.utsc.utoronto.ca/media/lens/debian
+	wget -O key/debian.pub http://imiller.utsc.utoronto.ca/media/lens/debian.pub
 
 download-iso:
 	wget "https://cdimage.debian.org/debian-cd/current/$(DEBIAN_ARCH)/iso-cd/debian-10.1.0-$(DEBIAN_ARCH)-netinst.iso"
@@ -57,7 +59,7 @@ debian:
 		-hda ./hda-$(DEBIAN_ARCH).qcow2
 
 key:
-	ssh-keygen -f ssh/debian -t rsa -b 4096 -C "Debian Lens User"
+	bin/generate-key.sh
 
 bootstrap: run
 	bin/bootstrap.sh $(SSH_PORT)

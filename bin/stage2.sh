@@ -30,3 +30,5 @@ fstrim -av
 
 # Clean up
 rm ~debian/stage1.sh ~debian/stage2.sh
+
+shutdown now

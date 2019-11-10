@@ -44,6 +44,8 @@ There are two stages to the bootstrapping process:
 - `bin/stage1.sh`: the user is created and given superuser access.
 - `bin/stage2.sh`: the application (Lens) is installed and configured.
 
+The `bootstrap.sh` script runs on the host machine, while `stage1.sh` and `stage2.sh` run *inside* the virtual machine.
+
 ## Changing the SSH key
 
 You can use your own SSH key instead of the one hardcoded in the repo.
@@ -51,5 +53,3 @@ You can use your own SSH key instead of the one hardcoded in the repo.
 ```
 make key
 ```
-
-If you use your own key, you must manually paste the public key `ssh/debian.pub` into `bin/stage1.sh` so that your key will be used during bootstrapping.

@@ -15,32 +15,30 @@ echo "Okay.  The VM has booted."
 echo
 echo "Copy stage 1 script"
 echo "-------"
-echo "Provide the debian user password to copy the bootstrap script."
+echo "Provide the user password to copy the bootstrap script."
 scp -P${SSH_PORT} bin/stage1.sh debian@127.0.0.1:
 
 echo
 echo "Execute stage 1 script"
 echo "-------"
-echo "First enter the debian user password."
-echo "Then, provide the root user password."
+echo "First enter the user password."
+echo "Then, provide the root password."
 ssh -p${SSH_PORT} -t debian@127.0.0.1 "su - -c '~debian/stage1.sh'"
 
 echo
 echo "Copy stage 2 script"
 echo "-------"
-scp -i ssh/debian -P${SSH_PORT} bin/stage2.sh debian@127.0.0.1:
+scp -i key/debian -P${SSH_PORT} bin/stage2.sh debian@127.0.0.1:
 
 echo
 echo "Execute stage 2 script"
 echo "-------"
-echo "Provide the debian user password to execute the bootstrap script."
-ssh -i ssh/debian -p${SSH_PORT} -t debian@127.0.0.1 "sudo ~debian/stage2.sh"
+echo "Provide the user password to execute the bootstrap script."
+ssh -i key/debian -p${SSH_PORT} -t debian@127.0.0.1 "sudo ~debian/stage2.sh"
 
 echo
-echo "Shutdown"
+echo "Wait 5 seconds for VM to shut down"
 echo "-------"
-echo "Provide the debian user password to execute the bootstrap script."
-ssh -i ssh/debian -p${SSH_PORT} -t debian@127.0.0.1 "sudo shutdown now"
 sleep 5
 
 echo
