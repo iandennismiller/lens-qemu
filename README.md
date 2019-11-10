@@ -9,8 +9,31 @@ This image can be virtualized with QEMU.
 2. Install requirements
 3. Download and run the Virtual Machine
 4. Connect to the Virtual Machine using VNC
+    - Use your favorite VNC client to connect to `127.0.0.1:5900`.
 5. Login to the Virtual Machine
+    - Username is `debian` and password is `debian`
 6. Launch Lens
+    - Executable is `/app/Lens-linux/Bin/lens.sh`
+
+```
+git clone https://projects.sisrlab.com/cap-lab/lens-qemu.git
+cd lens-qemu
+make requirements-macos
+make download-image
+make run
+```
+
+Once you have access to the Virtual Machine's Desktop:
+
+1. Launch a terminal from the dock
+2. Launch Lens with the following commands
+
+```
+cd /app/Lens-linux
+./Bin/lens.sh
+```
+
+## Step-by-step
 
 ### 1. Clone this project
 
@@ -27,7 +50,7 @@ cd lens-qemu
 You can install these on MacOS with homebrew using `make requirements-mac`.
 
 ```
-make requirements-mac
+make requirements-macos
 ```
 
 See [Windows Requirements](docs/Windows.md) for compatiblity with Win10.
@@ -50,8 +73,8 @@ If you do not have any VNC client yet, [install Tiger VNC](docs/VNC.md).
 
 ### 5. Login to the Virtual Machine
 
-- username is `debian` and password is `debian`
-- root password is also `debian`
+- username: `debian`
+- password: `debian`
 
 ### 6. Launch Lens
 
