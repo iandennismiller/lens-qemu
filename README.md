@@ -6,32 +6,17 @@ This image can be virtualized with QEMU.
 ## Quick Start
 
 1. Clone this project
+    - `git clone https://projects.sisrlab.com/cap-lab/lens-qemu.git && cd lens-qemu`
 2. Install requirements
+    - `make requirements-macos`
 3. Download and run the Virtual Machine
+    - `make download-image run`
 4. Connect to the Virtual Machine using VNC
     - Use your favorite VNC client to connect to `127.0.0.1:5900`.
 5. Login to the Virtual Machine
     - Username is `debian` and password is `debian`
-6. Launch Lens
+6. Launch Lens in a Terminal
     - Executable is `/app/Lens-linux/Bin/lens.sh`
-
-```
-git clone https://projects.sisrlab.com/cap-lab/lens-qemu.git
-cd lens-qemu
-make requirements-macos
-make download-image
-make run
-```
-
-Once you have access to the Virtual Machine's Desktop:
-
-1. Launch a terminal from the dock
-2. Launch Lens with the following commands
-
-```
-cd /app/Lens-linux
-./Bin/lens.sh
-```
 
 ## Step-by-step
 
