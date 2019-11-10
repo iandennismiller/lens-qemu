@@ -32,7 +32,7 @@ cd lens-qemu
 ### 2. Install requirements
 
 `lens-qemu` requires QEMU and `wget` to work.
-You can install these on MacOS with homebrew using `make requirements-mac`.
+You can install these on MacOS with homebrew:
 
 ```
 make requirements-macos
