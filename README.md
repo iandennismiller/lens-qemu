@@ -1,7 +1,9 @@
 # lens-qemu
 
 This project provides a Debian Linux Virtual Machine disk image that has Lens pre-installed in `/app/Lens-linux`.
-This image can be virtualized with QEMU.
+Run the Virtual Machine with `make run`.
+
+[You can also bootstrap your own Virtual Machine from scratch.](docs/Bootstrap.md)
 
 ## Quick Start
 
@@ -91,5 +93,4 @@ scp -i key/debian -P 2222 -r Lens-dist/ debian@127.0.0.1:/app/Lens-linux
 
 ## References
 
-- [Instructions for Bootstrapping a new disk image](docs/Bootstrap.md)
 - http://tedlab.mit.edu/~dr/Lens/installing.html
