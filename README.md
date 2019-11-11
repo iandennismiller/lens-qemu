@@ -18,7 +18,7 @@ Run the Virtual Machine with `make run`.
 5. Login to the Virtual Machine
     - Username is `debian` and password is `debian`
 6. Launch Lens in a Terminal
-    - Executable is `/app/Lens-linux/Bin/lens.sh`
+    - Run `/app/Lens-linux/Bin/lens.sh`
 
 ## Step-by-step
 
@@ -65,12 +65,10 @@ If you do not have any VNC client yet, [install Tiger VNC](docs/VNC.md).
 
 ### 6. Launch Lens
 
-Launch a terminal from the dock.
-Then, launch Lens.
+Launch a terminal from the dock and launch Lens.
 
 ```
-cd /app/Lens-linux
-./Bin/lens.sh
+/app/Lens-linux/Bin/lens.sh
 ```
 
 ## Common tasks
