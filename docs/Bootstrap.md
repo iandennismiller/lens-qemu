@@ -10,6 +10,7 @@ Edit `Makefile` to configure RAM, disk size, architectures, and hypervisor.
 make download-iso
 make hda
 make debian
+make key
 make bootstrap
 ```
 
@@ -33,7 +34,13 @@ make hda
 make debian
 ```
 
-### 4. Boot the new VM and configure it with `bin/bootstrap.sh`
+### 4. Generate SSH identity
+
+```
+make key
+```
+
+### 5. Boot the new VM and configure it with `bin/bootstrap.sh`
 
 ```
 make bootstrap
@@ -45,11 +52,3 @@ There are two stages to the bootstrapping process:
 - `bin/stage2.sh`: the application (Lens) is installed and configured.
 
 The `bootstrap.sh` script runs on the host machine, while `stage1.sh` and `stage2.sh` run *inside* the virtual machine.
-
-## Changing the SSH key
-
-You can use your own SSH key instead of the one hardcoded in the repo.
-
-```
-make key
-```
