@@ -3,6 +3,8 @@
 
 # Use "hvf" for MacOS
 HYPERVISOR=hvf
+# Use the Windows Hypervisor (on Windows 10) if it is available
+# HYPERVISOR=whpx
 # Use "hax" for Windows and/or i386; requires Intel HAXM (see Readme)
 # HYPERVISOR=hax
 
@@ -30,8 +32,7 @@ run:
 		-device usb-tablet \
 		-net user,hostfwd=tcp::$(SSH_PORT)-:22 \
 		-net nic \
-		-vnc :0 \
-		-daemonize
+		-vnc :0
 
 ssh:
 	ssh -t -p $(SSH_PORT) -i key/debian debian@127.0.0.1
